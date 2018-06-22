@@ -3,5 +3,6 @@ module.exports = {
   Color: require('./color'),
   Shape: require('./shape'),
   Size: require('./size'),
-  Opacity: require('./opacity')
+  Opacity: require('./opacity'),
+  ColorUtil: require('./color-util')
 };
