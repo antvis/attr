@@ -1,7 +1,7 @@
 {
   "name": "@antv/attr",
-  "version": "0.0.1-beta.2",
-  "description": "",
+  "version": "0.0.1",
+  "description": "The Attribute module for G2, F2.",
   "browser": "build/attr.js",
   "main": "build/attr.js",
   "module": "lib/index.js",
@@ -15,7 +15,9 @@
   "keywords": [
     "antv",
     "attr",
-    "attr"
+    "attr",
+    "g2",
+    "f2"
   ],
   "author": "https://github.com/orgs/antvis/people",
   "license": "MIT",
