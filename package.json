@@ -1,6 +1,6 @@
 {
   "name": "@antv/attr",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The Attribute module for G2, F2.",
   "browser": "build/attr.js",
   "main": "build/attr.js",

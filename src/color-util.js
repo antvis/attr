@@ -6,7 +6,8 @@ const isNumber = require('@antv/util/src/type/isNumber');
 const isString = require('@antv/util/src/type/isString');
 const each = require('@antv/util/src/each');
 
-const RGB_REG = /rgb\((\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
+// const RGB_REG = /rgb\((\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
+const RGB_REG = /rgba?\(([\s.,0-9]+)\)/;
 
 // 创建辅助 tag 取颜色
 function createTmp() {
@@ -86,8 +87,8 @@ const ColorUtil = {
     } else {
       iEl.style.color = color;
       rst = document.defaultView.getComputedStyle(iEl, '').getPropertyValue('color');
-      const cArray = RGB_REG.exec(rst);
-      cArray.shift();
+      const matchs = RGB_REG.exec(rst);
+      const cArray = matchs[1].split(/\s*,\s*/);
       rst = arr2rgb(cArray);
       colorCache[color] = rst;
     }
