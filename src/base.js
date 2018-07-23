@@ -2,10 +2,10 @@
  * @fileOverview the Attribute base class
  */
 
-const isString = require('@antv/util/src/type/isString');
-const isArray = require('@antv/util/src/type/isArray');
-const mix = require('@antv/util/src/mix');
-const each = require('@antv/util/src/each');
+const isString = require('@antv/util/lib/type/isString');
+const isArray = require('@antv/util/lib/type/isArray');
+const mix = require('@antv/util/lib/mix');
+const each = require('@antv/util/lib/each');
 
 function toScaleString(scale, value) {
   if (isString(value)) {
