@@ -1,6 +1,6 @@
 {
   "name": "@antv/attr",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "The Attribute module for G2, F2.",
   "browser": "build/attr.js",
   "main": "build/attr.js",
@@ -92,6 +92,6 @@
     "silent": false
   },
   "dependencies": {
-    "@antv/util": "~1.0.6"
+    "@antv/util": "~1.0.11"
   }
 }
