@@ -1,6 +1,6 @@
+const isString = require('@antv/util/lib/type/is-string');
 const ColorUtil = require('./color-util');
 const Base = require('./base');
-const isString = require('@antv/util/lib/type/isString');
 
 class Color extends Base {
 

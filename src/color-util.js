@@ -2,8 +2,8 @@
  * @fileOverview 颜色计算的辅助方法
  * @author dxq613@gmail.com
  */
-const isNumber = require('@antv/util/lib/type/isNumber');
-const isString = require('@antv/util/lib/type/isString');
+const isNumber = require('@antv/util/lib/type/is-number');
+const isString = require('@antv/util/lib/type/is-string');
 const each = require('@antv/util/lib/each');
 
 // const RGB_REG = /rgb\((\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;

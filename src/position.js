@@ -1,5 +1,5 @@
-const isNil = require('@antv/util/lib/type/isNil');
-const isArray = require('@antv/util/lib/type/isArray');
+const isNil = require('@antv/util/lib/type/is-nil');
+const isArray = require('@antv/util/lib/type/is-array');
 const each = require('@antv/util/lib/each');
 const Base = require('./base');
 

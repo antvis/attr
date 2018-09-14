@@ -1,9 +1,8 @@
 /**
  * @fileOverview the Attribute base class
  */
-
-const isString = require('@antv/util/lib/type/isString');
-const isArray = require('@antv/util/lib/type/isArray');
+const isString = require('@antv/util/lib/type/is-string');
+const isArray = require('@antv/util/lib/type/is-array');
 const mix = require('@antv/util/lib/mix');
 const each = require('@antv/util/lib/each');
 
