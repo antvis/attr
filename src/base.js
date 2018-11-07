@@ -56,7 +56,27 @@ class AttributeBase {
      */
     this.linear = null;
 
+    /**
+     * 当用户设置的 callback 返回 null 时, 应该返回默认 callback 中的值
+     */
+    let mixedCallback = null;
+    const defaultCallback = this.callback;
+
+    if (cfg.callback) {
+      const userCallback = cfg.callback;
+      mixedCallback = (...params) => {
+        let ret = userCallback(...params);
+        if (!ret) {
+          ret = defaultCallback.apply(this, params);
+        }
+        return ret;
+      };
+    }
+
     mix(this, cfg);
+    if (mixedCallback) {
+      mix(this, { callback: mixedCallback });
+    }
   }
 
   // 获取属性值，将值映射到视觉通道
