@@ -40,8 +40,11 @@ function toHex(value) {
 }
 
 function calColor(colors, percent) {
-  if (isNaN(percent) || !isNumber(percent)) {
+  if (isNaN(percent) || !isNumber(percent) || percent < 0) {
     percent = 0;
+  }
+  if (percent > 1) {
+    percent = 1;
   }
   const steps = colors.length - 1;
   const step = Math.floor(steps * percent);

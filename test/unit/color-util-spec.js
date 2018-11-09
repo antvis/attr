@@ -24,7 +24,9 @@ describe('color util test', function() {
   it('gradient red blue', () => {
     const gradient = ColorUtil.gradient([ 'red', 'blue' ]);
     expect(gradient(0)).equal('#ff0000');
+    expect(gradient(-0.1)).equal('#ff0000'); // negative number
     expect(gradient(1)).equal('#0000ff');
+    expect(gradient(1.2)).equal('#0000ff'); // larger than 1
     expect(gradient(0.5)).equal('#800080');
   });
 });
