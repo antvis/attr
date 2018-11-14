@@ -35,6 +35,22 @@ describe('attr base test', function() {
     expect(rst[0]).equal('10a');
   });
 
+  it('test 0 as function callback', () => {
+    const attr = new Attr({
+      type: 'test',
+      names: [ 't1', 't2' ],
+      callback(v1, v2) {
+        return v2 === 'a' ? 0 : 1;
+      },
+      scales: [ scale1, scale2 ]
+    });
+
+    expect(attr.mapping(10, 'a')[0]).equal(0);
+    expect(attr.mapping(10, 'b')[0]).equal(1);
+    expect(attr.mapping(10, 'c')[0]).equal(1);
+    expect(attr.mapping(10, 'd')[0]).equal(1);
+  });
+
   it('test linear scale with two values', function() {
     const attr = new Attr({
       type: 'test',

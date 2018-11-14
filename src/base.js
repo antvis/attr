@@ -3,6 +3,7 @@
  */
 const isString = require('@antv/util/lib/type/is-string');
 const isArray = require('@antv/util/lib/type/is-array');
+const isNil = require('@antv/util/lib/type/is-nil');
 const mix = require('@antv/util/lib/mix');
 const each = require('@antv/util/lib/each');
 
@@ -66,7 +67,7 @@ class AttributeBase {
       const userCallback = cfg.callback;
       mixedCallback = (...params) => {
         let ret = userCallback(...params);
-        if (!ret) {
+        if (isNil(ret)) {
           ret = defaultCallback.apply(this, params);
         }
         return ret;
