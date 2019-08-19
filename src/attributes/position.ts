@@ -1,6 +1,6 @@
-import { isArray, isNil } from "@antv/util";
-import { AttributeCfg } from "../interface";
-import Attribute from "./base";
+import { isArray, isNil } from '@antv/util';
+import { AttributeCfg } from '../interface';
+import Attribute from './base';
 
 export type Value = number | string;
 export type MappingValue = Value[] | Value;
@@ -8,8 +8,8 @@ export type MappingValue = Value[] | Value;
 export default class Position extends Attribute {
   constructor(cfg: AttributeCfg) {
     super(cfg);
-    this.names = ["x", "y"];
-    this.type = "position";
+    this.names = ['x', 'y'];
+    this.type = 'position';
   }
 
   public mapping(x: MappingValue, y: MappingValue) {
@@ -20,8 +20,8 @@ export default class Position extends Attribute {
     }
 
     return [
-      isArray(x) ? x.map(xi => scaleX.scale(xi)) : scaleX.scale(x),
-      isArray(y) ? y.map(yi => scaleY.scale(yi)) : scaleY.scale(y)
+      isArray(x) ? x.map((xi) => scaleX.scale(xi)) : scaleX.scale(x),
+      isArray(y) ? y.map((yi) => scaleY.scale(yi)) : scaleY.scale(y),
     ];
   }
 }

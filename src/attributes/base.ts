@@ -1,5 +1,5 @@
-import { each, identity, isArray, isNil, isString, mix } from "@antv/util";
-import { AttributeCfg, CallbackType, Scale } from "../interface";
+import { each, identity, isArray, isNil, isString, mix } from '@antv/util';
+import { AttributeCfg, CallbackType, Scale } from '../interface';
 
 // todo 这个到底目的是什么？
 const toScaleString = (scale: Scale, value: any): any => {
@@ -79,7 +79,7 @@ export default class Attribute {
    * 获取所有的维度名
    */
   public getFields() {
-    return this.scales.map(scale => scale.field);
+    return this.scales.map((scale) => scale.field);
   }
 
   /**
@@ -103,21 +103,13 @@ export default class Attribute {
     return params.map((param, idx) => {
       const scale = this.scales[idx];
 
-      return scale.type === "identity"
-        ? scale.values[0]
-        : this._getAttributeValue(scale, param);
+      return scale.type === 'identity' ? scale.values[0] : this._getAttributeValue(scale, param);
     });
   }
 
   // 解析配置
   private _parseCfg(cfg: AttributeCfg) {
-    const {
-      type = "base",
-      names = [],
-      scales = [],
-      values = [],
-      callback
-    } = cfg;
+    const { type = 'base', names = [], scales = [], values = [], callback } = cfg;
 
     this.type = type;
 

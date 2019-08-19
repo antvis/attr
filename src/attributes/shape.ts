@@ -1,11 +1,11 @@
-import { AttributeCfg } from "../interface";
-import Attribute from "./base";
+import { AttributeCfg } from '../interface';
+import Attribute from './base';
 
 export default class Shape extends Attribute {
   constructor(cfg: AttributeCfg) {
     super(cfg);
-    this.type = "shape";
-    this.names = ["shape"];
+    this.type = 'shape';
+    this.names = ['shape'];
   }
 
   /**

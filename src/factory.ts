@@ -1,4 +1,4 @@
-import Attribute, { AttributeConstructor } from "./attributes/base";
+import Attribute, { AttributeConstructor } from './attributes/base';
 
 interface AttributeMapType {
   [key: string]: any;
@@ -26,5 +26,5 @@ const registerAttribute = (type: string, ctor: AttributeConstructor) => {
 
 export { getAttribute, registerAttribute, Attribute };
 
-export { default as colorUtil } from "./util/color-util";
-export * from "./interface";
+export { default as colorUtil } from './util/color-util';
+export * from './interface';

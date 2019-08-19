@@ -1,15 +1,15 @@
-import { isString } from "@antv/util";
-import { AttributeCfg } from "../interface";
-import colorUtil from "../util/color-util";
-import Attribute from "./base";
+import { isString } from '@antv/util';
+import { AttributeCfg } from '../interface';
+import colorUtil from '../util/color-util';
+import Attribute from './base';
 
 export default class Color extends Attribute {
   public gradient: (percent: number) => string;
 
   constructor(cfg: AttributeCfg) {
     super(cfg);
-    this.type = "color";
-    this.names = ["color"];
+    this.type = 'color';
+    this.names = ['color'];
 
     if (isString(this.values)) {
       this.linear = true;

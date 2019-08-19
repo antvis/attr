@@ -1,19 +1,23 @@
 import { expect } from 'chai';
 import * as Attr from '../../src';
-const Scale = require('@antv/scale');
+import { getScale } from '@antv/scale';
+
+const Identity = getScale('identity');
+const Category = getScale('category');
+const Linear = getScale('linear');
 
 describe('attr test color', () => {
-  const scaleIdentity = Scale.identity({
+  const scaleIdentity = new Identity({
     field: 'type',
     values: [ 'red' ],
   });
 
-  const scaleCat = Scale.cat({
+  const scaleCat = new Category({
     field: 'type',
     values: [ 'a', 'b', 'c', 'd' ]
   });
 
-  const scaleLinear = Scale.linear({
+  const scaleLinear = new Linear({
     field: 'age',
     min: 0,
     max: 10
@@ -92,12 +96,12 @@ describe('attr test color', () => {
 });
 
 describe('attr test size & opacity', () => {
-  const scaleCat = Scale.cat({
+  const scaleCat = new Category({
     field: 'type',
     values: [ 'a', 'b', 'c', 'd' ]
   });
 
-  const scaleLinear = Scale.linear({
+  const scaleLinear = new Linear({
     field: 'age',
     min: 0,
     max: 10
@@ -148,12 +152,12 @@ describe('attr test size & opacity', () => {
 });
 
 describe('attr test shape', () => {
-  const scaleCat = Scale.cat({
+  const scaleCat = new Category({
     field: 'type',
     values: [ 'a', 'b', 'c', 'd' ]
   });
 
-  const scaleLinear = Scale.linear({
+  const scaleLinear = new Linear({
     field: 'age',
     min: 0,
     max: 10
@@ -191,12 +195,12 @@ describe('attr test shape', () => {
 });
 
 describe('attr test position', () => {
-  const scaleCat = Scale.cat({
+  const scaleCat = new Category({
     field: 'type',
     values: [ 'a', 'b', 'c', 'd', 'e' ]
   });
 
-  const scaleLinear = Scale.linear({
+  const scaleLinear = new Linear({
     field: 'age',
     min: 0,
     max: 10

@@ -1,23 +1,18 @@
-import { isString, map, memoize } from "@antv/util";
+import { isString, map, memoize } from '@antv/util';
 
 const RGB_REG = /rgba?\(([\s.,0-9]+)\)/;
 
 // 创建辅助 tag 取颜色
 const createTmp = (): HTMLElement => {
-  const i = document.createElement("i");
-  i.title = "Web Colour Picker";
-  i.style.display = "none";
+  const i = document.createElement('i');
+  i.title = 'Web Colour Picker';
+  i.style.display = 'none';
   document.body.appendChild(i);
   return i;
 };
 
 // 获取颜色之间的插值
-const getValue = (
-  start: number[],
-  end: number[],
-  percent: number,
-  index: number
-): number => {
+const getValue = (start: number[], end: number[], percent: number, index: number): number => {
   return start[index] + (end[index] - start[index]) * percent;
 };
 
@@ -28,11 +23,7 @@ function arr2rgb(arr: number[]): string {
 
 // rgb 颜色转换成数组
 const rgb2arr = (str: string): number[] => {
-  return [
-    parseInt(str.substr(1, 2), 16),
-    parseInt(str.substr(3, 2), 16),
-    parseInt(str.substr(5, 2), 16)
-  ];
+  return [parseInt(str.substr(1, 2), 16), parseInt(str.substr(3, 2), 16), parseInt(str.substr(5, 2), 16)];
 };
 
 // 将数值从 0-255 转换成16进制字符串
@@ -44,12 +35,7 @@ const toHex = (value: number): string => {
 
 // 计算颜色
 const calColor = (points: number[][], percent: number) => {
-  const fixedPercent =
-    isNaN(Number(percent)) || percent < 0
-      ? 0
-      : percent > 1
-      ? 1
-      : Number(percent);
+  const fixedPercent = isNaN(Number(percent)) || percent < 0 ? 0 : percent > 1 ? 1 : Number(percent);
 
   const steps = points.length - 1;
 
@@ -61,11 +47,7 @@ const calColor = (points: number[][], percent: number) => {
 
   const end = step === steps ? start : points[step + 1];
 
-  return arr2rgb([
-    getValue(start, end, left, 0),
-    getValue(start, end, left, 1),
-    getValue(start, end, left, 2)
-  ]);
+  return arr2rgb([getValue(start, end, left, 0), getValue(start, end, left, 1), getValue(start, end, left, 2)]);
 };
 
 // 用于给 toRGB 的缓存（使用 memoize 方法替换）
@@ -79,7 +61,7 @@ let iEl: HTMLElement;
  */
 const toRGB = (color: string): string => {
   // 如果已经是 rgb的格式
-  if (color[0] === "#" && color.length === 7) {
+  if (color[0] === '#' && color.length === 7) {
     return color;
   }
 
@@ -90,12 +72,10 @@ const toRGB = (color: string): string => {
 
   iEl.style.color = color;
 
-  let rst = document.defaultView
-    .getComputedStyle(iEl, "")
-    .getPropertyValue("color");
+  let rst = document.defaultView.getComputedStyle(iEl, '').getPropertyValue('color');
 
   const matches = RGB_REG.exec(rst) as string[];
-  const cArray: number[] = matches[1].split(/\s*,\s*/).map(s => Number(s));
+  const cArray: number[] = matches[1].split(/\s*,\s*/).map((s) => Number(s));
 
   rst = arr2rgb(cArray);
 
@@ -108,10 +88,10 @@ const toRGB = (color: string): string => {
  * @return 颜色值
  */
 const gradient = (colors: string | string[]) => {
-  const colorArray = isString(colors) ? colors.split("-") : colors;
+  const colorArray = isString(colors) ? colors.split('-') : colors;
 
-  const points = map(colorArray, color => {
-    return rgb2arr(color.indexOf("#") === -1 ? toRGB(color) : color);
+  const points = map(colorArray, (color) => {
+    return rgb2arr(color.indexOf('#') === -1 ? toRGB(color) : color);
   });
 
   // 返回一个函数
@@ -123,5 +103,5 @@ const gradient = (colors: string | string[]) => {
 export default {
   rgb2arr,
   gradient,
-  toRGB: memoize(toRGB)
+  toRGB: memoize(toRGB),
 };
