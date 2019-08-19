@@ -15,7 +15,7 @@
 `npm install @antv/attr`
 
 ```js
-import Attr from '@antv/attr';
+import { getAttribute, registerAttribute, Attribute } from '@antv/attr';
 
 ```
 

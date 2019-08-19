@@ -1,5 +1,5 @@
-const expect = require('chai').expect;
-const Attr = require('../../src/base');
+import { expect } from 'chai';
+import { Attribute as Attr } from '../../src';
 const Scale = require('@antv/scale');
 
 describe('attr base test', function() {

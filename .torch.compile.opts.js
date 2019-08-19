@@ -1,15 +1,14 @@
 module.exports = {
   babelrc: {
-    presets: [
-      '@babel/preset-env'
-    ],
-    sourceMaps: 'inline'
+    presets: ['@babel/preset-env'],
+    sourceMaps: 'inline',
   },
-  extensions: ['.js'],
+  extensions: ['.es6', '.es', '.jsx', '.js', '.ts', '.tsx', '.css', '.svg'],
   include: [
-    'node_modules/**/src/gl-matrix/**/*.js '
+    'src/**',
+    'lib/**',
+    'test/**',
   ],
-  exclude: [
-    'bower_components/**/*.js',
-  ]
-}
+  exclude: ['bower_components/**', 'node_modules/**'],
+  tsconfig: require('./tsconfig.json'),
+};

@@ -1,0 +1,31 @@
+import Attribute from './attributes/base';
+import colorUtil from './util/color-util';
+
+import Color from './attributes/color';
+import Opacity from './attributes/opacity';
+import Position from './attributes/position';
+import Shape from './attributes/shape';
+import Size from './attributes/size';
+
+import { registerAttribute, getAttribute } from './factory';
+
+registerAttribute('Color', Color);
+registerAttribute('Opacity', Opacity);
+registerAttribute('Position', Position);
+registerAttribute('Shape', Shape);
+registerAttribute('Size', Size);
+
+export {
+  registerAttribute,
+  getAttribute,
+  Attribute,
+  // 以下 export 是为了兼容，理论上是不需要的
+  Color,
+  Opacity,
+  Position,
+  Shape,
+  Size,
+  colorUtil,
+};
+
+export * from './interface';
