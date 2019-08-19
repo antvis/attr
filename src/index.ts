@@ -1,19 +1,19 @@
-import Attribute from './attributes/base';
-import colorUtil from './util/color-util';
+import Attribute from "./attributes/base";
+import colorUtil from "./util/color-util";
 
-import Color from './attributes/color';
-import Opacity from './attributes/opacity';
-import Position from './attributes/position';
-import Shape from './attributes/shape';
-import Size from './attributes/size';
+import Color from "./attributes/color";
+import Opacity from "./attributes/opacity";
+import Position from "./attributes/position";
+import Shape from "./attributes/shape";
+import Size from "./attributes/size";
 
-import { registerAttribute, getAttribute } from './factory';
+import { getAttribute, registerAttribute } from "./factory";
 
-registerAttribute('Color', Color);
-registerAttribute('Opacity', Opacity);
-registerAttribute('Position', Position);
-registerAttribute('Shape', Shape);
-registerAttribute('Size', Size);
+registerAttribute("Color", Color);
+registerAttribute("Opacity", Opacity);
+registerAttribute("Position", Position);
+registerAttribute("Shape", Shape);
+registerAttribute("Size", Size);
 
 export {
   registerAttribute,
@@ -25,7 +25,7 @@ export {
   Position,
   Shape,
   Size,
-  colorUtil,
+  colorUtil
 };
 
-export * from './interface';
+export * from "./interface";

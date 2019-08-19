@@ -1,4 +1,4 @@
-# attr
+# @antv/attr
 
 [![](https://img.shields.io/travis/antvis/attr.svg)](https://travis-ci.org/antvis/attr)
 ![](https://img.shields.io/badge/language-javascript-red.svg)

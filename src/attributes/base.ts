@@ -1,5 +1,5 @@
-import { isArray, isString, isNil, mix, each, identity } from '@antv/util';
-import { AttributeCfg, CallbackType, Scale } from '../interface';
+import { each, identity, isArray, isNil, isString, mix } from "@antv/util";
+import { AttributeCfg, CallbackType, Scale } from "../interface";
 
 // todo 这个到底目的是什么？
 const toScaleString = (scale: Scale, value: any): any => {
@@ -9,34 +9,31 @@ const toScaleString = (scale: Scale, value: any): any => {
   return scale.invert(scale.scale(value));
 };
 
-export interface AttributeConstructor {
-  new (cfg: any): Attribute;
-}
+export type AttributeConstructor = new (cfg: any) => Attribute;
 
 /**
  * 所有视觉通道属性的基类
  * @class Base
  */
 export default class Attribute {
+  public type: string;
+  public names: string[] = [];
+  public scales: Scale[] = [];
+  public linear: boolean = false;
 
-  type: string;
-  names: string[] = [];
-  scales: Scale[] = [];
-  linear: boolean = false;
-
-  values: any[] = [];
-  callback: CallbackType = () => [];
+  public values: any[] = [];
 
   constructor(cfg: AttributeCfg) {
     // 解析配置
     this._parseCfg(cfg);
   }
+  public callback: CallbackType = () => [];
 
   /**
    * 映射的值组成的数组
    * @param params 对应 scale 顺序的值传入
    */
-  mapping(...params: any[]): any[] {
+  public mapping(...params: any[]): any[] {
     const values = params.map((param, idx) => {
       return this._toOriginParam(param, this.scales[idx]);
     });
@@ -48,7 +45,7 @@ export default class Attribute {
    * 如果进行线性映射，返回对应的映射值
    * @param percent
    */
-  getLinearValue(percent: number): number {
+  public getLinearValue(percent: number): number | string {
     // 分段数量
     const steps = this.values.length - 1;
 
@@ -64,28 +61,9 @@ export default class Attribute {
   }
 
   /**
-   * 默认的回调函数（用户没有自定义 callback，或者用户自定义 callback 返回空的时候，使用 values 映射）
-   * @param params
-   */
-  private defaultCallback(...params: any[]): any[] {
-    // 没有 params 的情况，是指没有指定 fields，直接返回配置的 values 常量
-    if (params.length === 0) {
-      return this.values;
-    }
-
-    return params.map((param, idx) => {
-      const scale = this.scales[idx];
-
-      return scale.type === 'identity' ?
-        scale.values[0] :
-        this._getAttributeValue(scale, param);
-    });
-  }
-
-  /**
    * 根据度量获取属性名
    */
-  getNames() {
+  public getNames() {
     const scales = this.scales;
     const names = this.names;
 
@@ -100,21 +78,46 @@ export default class Attribute {
   /**
    * 获取所有的维度名
    */
-  getFields() {
-    return this.scales.map((scale) => scale.field);
+  public getFields() {
+    return this.scales.map(scale => scale.field);
   }
 
   /**
    * 根据名称获取度量
    * @param name
    */
-  getScale(name: string) {
+  public getScale(name: string) {
     return this.scales[this.names.indexOf(name)];
+  }
+
+  /**
+   * 默认的回调函数（用户没有自定义 callback，或者用户自定义 callback 返回空的时候，使用 values 映射）
+   * @param params
+   */
+  private defaultCallback(...params: any[]): any[] {
+    // 没有 params 的情况，是指没有指定 fields，直接返回配置的 values 常量
+    if (params.length === 0) {
+      return this.values;
+    }
+
+    return params.map((param, idx) => {
+      const scale = this.scales[idx];
+
+      return scale.type === "identity"
+        ? scale.values[0]
+        : this._getAttributeValue(scale, param);
+    });
   }
 
   // 解析配置
   private _parseCfg(cfg: AttributeCfg) {
-    const { type = 'base',names = [], scales = [], values = [], callback } = cfg;
+    const {
+      type = "base",
+      names = [],
+      scales = [],
+      values = [],
+      callback
+    } = cfg;
 
     this.type = type;
 
@@ -131,7 +134,7 @@ export default class Attribute {
         // 使用用户返回的值处理
         const ret = callback(...params);
         if (!isNil(ret)) {
-          return [ ret ];
+          return [ret];
         }
       }
 
@@ -163,8 +166,10 @@ export default class Attribute {
   private _toOriginParam(param: any, scale: Scale) {
     // 是线性，直接返回
     // 非线性，使用 scale 变换
-    return !scale.isLinear ?
-      (isArray(param) ? param.map((p: any) => toScaleString(scale, p)) : toScaleString(scale, param))
+    return !scale.isLinear
+      ? isArray(param)
+        ? param.map((p: any) => toScaleString(scale, p))
+        : toScaleString(scale, param)
       : param;
   }
 }

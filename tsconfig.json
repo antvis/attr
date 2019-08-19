@@ -5,6 +5,7 @@
     "sourceMap": true,
     "outDir": "lib",
     "importHelpers": true,
+    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "lib": [
       "dom",

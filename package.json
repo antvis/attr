@@ -2,7 +2,43 @@
   "name": "@antv/attr",
   "version": "0.2.0",
   "description": "The Attribute module for G2, F2.",
-  "main": "build/attr.js",
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
+  "devDependencies": {
+    "@antv/scale": "~0.0.1",
+    "@antv/torch": "~1.0.5",
+    "chai": "~4.1.2",
+    "husky": "^3.0.4",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.18.2",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.5.3",
+    "rimraf": "^3.0.0"
+  },
+  "scripts": {
+    "clean": "rimraf lib esm",
+    "lint": "run-s lint:*",
+    "lint:tslint": "tslint -c tslint.json 'src/**/*.ts'",
+    "lint:prettier": "prettier --list-different 'src/**/*.{ts,tsx,js,jsx}'",
+    "test": "torch --renderer --compile --recursive ./test/",
+    "test-live": "torch --compile --interactive --watch --recursive ./test/",
+    "coverage": "exit 0",
+    "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
+    "lib:esm": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir esm",
+    "lib": "run-p lib:*",
+    "build": "run-s clean lib"
+  },
+  "dependencies": {
+    "@antv/util": "~2.0.0",
+    "tslib": "^1.10.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "run-s lint build test"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:antvis/attr.git"
@@ -17,30 +53,5 @@
     "f2"
   ],
   "author": "https://github.com/orgs/antvis/people",
-  "license": "MIT",
-  "devDependencies": {
-    "@antv/scale": "~0.0.1",
-    "@antv/torch": "^1.0.5",
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "chai": "~4.1.2",
-    "husky": "^3.0.4"
-  },
-  "scripts": {
-    "build": "rm -rf lib && tsc",
-    "coverage": "exit 0",
-    "lint": "npm run tsc",
-    "test": "torch --renderer --compile --recursive ./test/",
-    "test-live": "torch --compile --interactive --watch --recursive ./test/",
-    "tsc": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@antv/util": "~2.0.0",
-    "tslib": "^1.10.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint && npm run test"
-    }
-  }
+  "license": "MIT"
 }

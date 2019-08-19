@@ -1,4 +1,4 @@
-import { Scale } from '@antv/scale';
+import { Scale } from "@antv/scale";
 
 export { Scale };
 
