@@ -70,3 +70,4 @@ demos/assets/screenshots
 *.sw*
 *.un~
 lib
+esm

@@ -1,19 +1,23 @@
-const expect = require('chai').expect;
-const Attr = require('../../src/');
-const Scale = require('@antv/scale');
+import { expect } from 'chai';
+import * as Attr from '../../src';
+import { getScale } from '@antv/scale';
+
+const Identity = getScale('identity');
+const Category = getScale('category');
+const Linear = getScale('linear');
 
 describe('attr test color', () => {
-  const scaleIdentity = Scale.identity({
+  const scaleIdentity = new Identity({
     field: 'type',
-    value: 'red'
+    values: [ 'red' ],
   });
 
-  const scaleCat = Scale.cat({
+  const scaleCat = new Category({
     field: 'type',
     values: [ 'a', 'b', 'c', 'd' ]
   });
 
-  const scaleLinear = Scale.linear({
+  const scaleLinear = new Linear({
     field: 'age',
     min: 0,
     max: 10
@@ -92,12 +96,12 @@ describe('attr test color', () => {
 });
 
 describe('attr test size & opacity', () => {
-  const scaleCat = Scale.cat({
+  const scaleCat = new Category({
     field: 'type',
     values: [ 'a', 'b', 'c', 'd' ]
   });
 
-  const scaleLinear = Scale.linear({
+  const scaleLinear = new Linear({
     field: 'age',
     min: 0,
     max: 10
@@ -148,12 +152,12 @@ describe('attr test size & opacity', () => {
 });
 
 describe('attr test shape', () => {
-  const scaleCat = Scale.cat({
+  const scaleCat = new Category({
     field: 'type',
     values: [ 'a', 'b', 'c', 'd' ]
   });
 
-  const scaleLinear = Scale.linear({
+  const scaleLinear = new Linear({
     field: 'age',
     min: 0,
     max: 10
@@ -191,27 +195,19 @@ describe('attr test shape', () => {
 });
 
 describe('attr test position', () => {
-  const scaleCat = Scale.cat({
+  const scaleCat = new Category({
     field: 'type',
     values: [ 'a', 'b', 'c', 'd', 'e' ]
   });
 
-  const scaleLinear = Scale.linear({
+  const scaleLinear = new Linear({
     field: 'age',
     min: 0,
     max: 10
   });
-  const coord = {
-    convertPoint(obj) {
-      return {
-        x: obj.x * 100,
-        y: obj.y * 200
-      };
-    }
-  };
+
   const position = new Attr.Position({
     scales: [ scaleCat, scaleLinear ],
-    coord
   });
 
   it('init', () => {
@@ -220,19 +216,19 @@ describe('attr test position', () => {
   });
   it('mapping x,y', () => {
     const rst = position.mapping('a', 3);
-    expect(rst).eqls([ 0, 60 ]);
+    expect(rst).eqls([ 0, 0.3 ]);
   });
   it('mapping x, [y1,y2]', () => {
     const rst = position.mapping('b', [ 4, 6 ]);
-    expect(rst).eqls([ 25, [ 80, 120 ]]);
+    expect(rst).eqls([ 0.25, [ 0.4, 0.6 ] ]);
   });
   it('mapping [x1,x2], y', () => {
     const rst = position.mapping([ 'b', 'c' ], 8);
-    expect(rst).eqls([[ 25, 50 ], 160 ]);
+    expect(rst).eqls([ [ 0.25, 0.50 ], 0.8 ]);
   });
   it('mapping [x1,x2], [y1, y2]', () => {
     const rst = position.mapping([ 'b', 'c', 'd' ], [ 4, 6, 10 ]);
-    expect(rst).eqls([[ 25, 50, 75 ], [ 80, 120, 200 ]]);
+    expect(rst).eqls([ [ 0.25, 0.5, 0.75 ], [ 0.4, 0.6, 1 ] ]);
   });
   it('mapping x, y 0', function() {
     const rst = position.mapping('a', 0);

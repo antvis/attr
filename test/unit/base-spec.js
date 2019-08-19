@@ -1,14 +1,19 @@
-const expect = require('chai').expect;
-const Attr = require('../../src/base');
-const Scale = require('@antv/scale');
+import { expect } from 'chai';
+import { Attribute as Attr } from '../../src';
+import { getScale } from '@antv/scale';
+
+const Identity = getScale('identity');
+const Category = getScale('category');
+const Linear = getScale('linear');
+
 
 describe('attr base test', function() {
-  const scale1 = Scale.linear({
+  const scale1 = new Linear({
     field: 'dim1',
     min: 0,
     max: 100
   });
-  const scale2 = Scale.cat({
+  const scale2 = new Category({
     field: 'dim2',
     values: [ 'a', 'b', 'c', 'd' ]
   });

@@ -1,8 +1,16 @@
-const expect = require('chai').expect;
-const Attr = require('../../src/index');
+import { expect } from 'chai';
+import {
+  Position, Shape, Color, Size, Opacity,
+  colorUtil,
+  Attribute, getAttribute, registerAttribute
+} from '../../src';
 
 describe('Attr', () => {
   it('Attr', () => {
-    expect(Attr).to.include.all.keys('Position', 'Shape', 'Color', 'Size', 'Opacity', 'ColorUtil');
+    expect([
+      Position, Shape, Color, Size, Opacity,
+      colorUtil,
+      Attribute, getAttribute, registerAttribute
+    ]).to.not.include.keys(undefined);
   });
 });
