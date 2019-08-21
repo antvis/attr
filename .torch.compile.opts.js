@@ -7,7 +7,7 @@ module.exports = {
   include: [
     'src/**',
     'lib/**',
-    'test/**',
+    '__tests__/**',
   ],
   exclude: ['bower_components/**', 'node_modules/**'],
   tsconfig: require('./tsconfig.json'),
