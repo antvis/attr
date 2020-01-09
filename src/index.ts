@@ -1,5 +1,4 @@
 import Attribute from './attributes/base';
-import colorUtil from './util/color-util';
 
 import Color from './attributes/color';
 import Opacity from './attributes/opacity';
@@ -25,7 +24,6 @@ export {
   Position,
   Shape,
   Size,
-  colorUtil,
 };
 
 export * from './interface';

@@ -9,7 +9,5 @@ export interface AttributeCfg {
   readonly scales: Scale[];
   readonly values?: any[];
   readonly callback?: CallbackType;
-  // readonly linear: boolean;
   readonly names: string[];
-  // readonly gradient: string;
 }
