@@ -21,7 +21,8 @@
     "lib:esm": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir esm",
     "lib": "run-p lib:*",
     "build": "run-s clean lib",
-    "ci": "run-s build test"
+    "ci": "run-s build test",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "dependencies": {
     "@antv/util": "~2.0.0",
@@ -42,7 +43,8 @@
     "rimraf": "^3.0.0",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "conventional-changelog-cli": "^2.0.28"
   },
   "husky": {
     "hooks": {
