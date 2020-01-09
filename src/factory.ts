@@ -25,6 +25,4 @@ const registerAttribute = (type: string, ctor: AttributeConstructor) => {
 };
 
 export { getAttribute, registerAttribute, Attribute };
-
-export { default as colorUtil } from './util/color-util';
 export * from './interface';

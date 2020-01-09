@@ -25,7 +25,8 @@
   },
   "dependencies": {
     "@antv/util": "~2.0.0",
-    "tslib": "^1.10.0"
+    "tslib": "^1.10.0",
+    "@antv/color-util": "^2.0.1"
   },
   "devDependencies": {
     "@antv/scale": "~0.2.0",
