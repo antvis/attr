@@ -14,9 +14,9 @@
   "scripts": {
     "clean": "rimraf lib esm",
     "lint": "lint-staged",
-    "test": "torch --renderer --compile --recursive ./__tests__/",
-    "test-live": "torch --compile --interactive --watch --recursive ./__tests__/",
-    "coverage": "exit 0",
+    "test": "jest",
+    "test-live": "DEBUG_MODE=1 jest --watch tests/unit",
+    "coverage": "jest --coverage",
     "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
     "lib:esm": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir esm",
     "lib": "run-p lib:*",
@@ -29,9 +29,12 @@
     "@antv/color-util": "^2.0.1"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "jest": "^24.9.0",
+    "jest-electron": "^0.1.7",
+    "jest-extended": "^0.11.2",
+    "ts-jest": "^24.1.0",
     "@antv/scale": "~0.2.0",
-    "@antv/torch": "~1.0.5",
-    "chai": "~4.1.2",
     "husky": "^3.0.4",
     "lint-staged": "^9.2.3",
     "npm-run-all": "^4.1.5",
@@ -56,6 +59,18 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "jest": {
+    "runner": "jest-electron/runner",
+    "testEnvironment": "jest-electron/environment",
+    "preset": "ts-jest",
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "src/**/*.{ts,js}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ],
+    "testRegex": "/tests/.*-spec\\.ts?$"
   },
   "repository": {
     "type": "git",
