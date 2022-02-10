@@ -1,11 +1,12 @@
 {
   "name": "@antv/attr",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "The Attribute module for G2, F2.",
   "main": "lib/index.js",
   "module": "esm/index.js",
   "types": "lib/index.d.ts",
   "files": [
+    "src",
     "lib",
     "esm",
     "README.md",
